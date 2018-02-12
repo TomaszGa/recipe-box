@@ -1,6 +1,7 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
-import { Panel, PanelGroup } from "react-bootstrap";
+import { Panel, PanelGroup, Button } from "react-bootstrap";
+
+import Recipe from "./Recipe/Recipe";
 function recipeList(props) {
   const recipeList = props.recipes.map((recipe, index) => {
     return (

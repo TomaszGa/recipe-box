@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Container, Segment } from "semantic-ui-react";
-
+import { Panel } from "react-bootstrap";
 import AddNewRecipe from "../../components/AddNewRecipe/AddNewRecipe";
 import RecipeList from "../../components/RecipeList/RecipeList";
 class RecipeBoxApp extends Component {
@@ -44,26 +43,37 @@ class RecipeBoxApp extends Component {
   };
 
   handleNewSubmit = (event, data) => {
+    event.preventDefault();
+    this.handleNewModalToggle();
     const newRecipes = [...this.state.recipes];
     newRecipes.push(data);
     this.setState({
       recipes: newRecipes
     });
   };
+
+  handleNewModalToggle = () => {
+    this.setState(prevState => ({
+      addNewWindowOn: !prevState.addNewWindowOn
+    }));
+  };
+
   render() {
     return (
-      <Container>
-        <Segment raised>
-          <h1>Recipe box app</h1>
-          <RecipeList
-            recipes={this.state.recipes}
-            activeIndex={this.state.expandedRecipe}
-            listClick={this.handleListClick}
-            listDeleteClick={this.handleListDelete}
-          />
-          <AddNewRecipe formSubmit={this.handleNewSubmit} />
-        </Segment>
-      </Container>
+      <div className="container">
+        <h1>Recipe box app</h1>
+        <RecipeList
+          recipes={this.state.recipes}
+          activeIndex={this.state.expandedRecipe}
+          listClick={this.handleListClick}
+          listDeleteClick={this.handleListDelete}
+        />
+        <AddNewRecipe
+          formSubmit={this.handleNewSubmit}
+          modalShow={this.state.addNewWindowOn}
+          modalToggle={this.handleNewModalToggle}
+        />
+      </div>
     );
   }
 }
