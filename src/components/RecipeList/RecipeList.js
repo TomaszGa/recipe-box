@@ -1,5 +1,5 @@
 import React from "react";
-import { Accordion, Icon } from "semantic-ui-react";
+import { Accordion, Icon, Button } from "semantic-ui-react";
 
 function recipeList(props) {
   const recipeList = props.recipes.map((recipe, index) => {
@@ -15,6 +15,7 @@ function recipeList(props) {
         </Accordion.Title>
         <Accordion.Content active={props.activeIndex === index}>
           <p>{recipe.text}</p>
+          <Button onClick={() => props.listDeleteClick(index)}>Delete</Button>
         </Accordion.Content>
       </div>
     );

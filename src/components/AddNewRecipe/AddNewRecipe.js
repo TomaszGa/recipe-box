@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Header,
-  Image,
-  Modal,
-  Form,
-  TextArea
-} from "semantic-ui-react";
+import { Button, Modal, Form, TextArea } from "semantic-ui-react";
 
 class AddNewRecipe extends Component {
   state = {

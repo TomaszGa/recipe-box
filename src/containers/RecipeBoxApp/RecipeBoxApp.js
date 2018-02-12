@@ -25,17 +25,27 @@ class RecipeBoxApp extends Component {
   };
 
   handleListClick = id => {
+    let newExpandedId = id;
+    if (newExpandedId === this.state.expandedRecipe) {
+      newExpandedId = null;
+    }
     this.setState({
-      expandedRecipe: id
+      expandedRecipe: newExpandedId
+    });
+  };
+
+  handleListDelete = id => {
+    console.log(id);
+    const newRecipes = [...this.state.recipes];
+    newRecipes.splice(id, 1);
+    this.setState({
+      recipes: newRecipes
     });
   };
 
   handleNewSubmit = (event, data) => {
-    console.log(data);
     const newRecipes = [...this.state.recipes];
-    console.log(newRecipes);
     newRecipes.push(data);
-    console.log(newRecipes);
     this.setState({
       recipes: newRecipes
     });
@@ -49,6 +59,7 @@ class RecipeBoxApp extends Component {
             recipes={this.state.recipes}
             activeIndex={this.state.expandedRecipe}
             listClick={this.handleListClick}
+            listDeleteClick={this.handleListDelete}
           />
           <AddNewRecipe formSubmit={this.handleNewSubmit} />
         </Segment>
