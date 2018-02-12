@@ -1,29 +1,29 @@
 import React from "react";
-import { Accordion, Icon, Button } from "semantic-ui-react";
-
+import { Button } from "semantic-ui-react";
+import { Panel, PanelGroup } from "react-bootstrap";
 function recipeList(props) {
   const recipeList = props.recipes.map((recipe, index) => {
     return (
-      <div key={index}>
-        <Accordion.Title
+      <Panel eventKey={index}>
+        <Panel.Heading
           active={props.activeIndex === index}
           onClick={() => props.listClick(index)}
           styled
         >
-          <Icon name="dropdown" />
-          {recipe.name}
-        </Accordion.Title>
-        <Accordion.Content active={props.activeIndex === index}>
+          <Panel.Title toggle>{recipe.name}</Panel.Title>
+        </Panel.Heading>
+        <Panel.Body collapsible active={props.activeIndex === index}>
           <p>{recipe.text}</p>
           <Button onClick={() => props.listDeleteClick(index)}>Delete</Button>
-        </Accordion.Content>
-      </div>
+        </Panel.Body>
+      </Panel>
     );
   });
   return (
     <div>
-      <h1>Hiya</h1>
-      <Accordion>{recipeList}</Accordion>
+      <PanelGroup accordion id="accordion-main">
+        {recipeList}
+      </PanelGroup>
     </div>
   );
 }
