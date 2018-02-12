@@ -2,19 +2,19 @@ import React from "react";
 import { Accordion, Icon } from "semantic-ui-react";
 
 function recipeList(props) {
-  const recipeList = props.recipes.map(recipe => {
+  const recipeList = props.recipes.map((recipe, index) => {
     return (
       <div>
-        <Accordion.Title index={0}>
+        <Accordion.Title
+          active={props.activeIndex === index}
+          onClick={() => props.listClick(index)}
+          styled
+        >
           <Icon name="dropdown" />
           {recipe.name}
         </Accordion.Title>
-        <Accordion.Content>
-          <p>
-            A dog is a type of domesticated animal. Known for its loyalty and
-            faithfulness, it can be found as a welcome guest in many households
-            across the world.
-          </p>
+        <Accordion.Content active={props.activeIndex === index}>
+          <p>{recipe.text}</p>
         </Accordion.Content>
       </div>
     );

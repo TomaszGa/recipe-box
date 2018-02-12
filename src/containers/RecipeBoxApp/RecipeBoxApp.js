@@ -7,30 +7,40 @@ class RecipeBoxApp extends Component {
   state = {
     recipes: [
       {
-        id: 0,
         name: "Dummy recipe 1",
         text: "Hey I am recipe numero uno"
       },
       {
-        id: 1,
         name: "Dummy recipe 2",
         text: "Hey I am recipe two"
       },
       {
-        id: 2,
         name: "Dummy recipe 3",
         text: "Hey I am recipe three"
       }
     ],
-    expandedRecipe: null,
-    addNewWindowOn: false
+    expandedRecipe: 1,
+    addNewWindowOn: false,
+    editorOn: false
   };
+
+  handleListClick = id => {
+    this.setState({
+      expandedRecipe: id
+    });
+  };
+
   render() {
     return (
       <Container>
         <Segment raised>
           <h1>Recipe box app</h1>
-          <RecipeList recipes={this.state.recipes} />
+          <RecipeList
+            recipes={this.state.recipes}
+            activeIndex={this.state.expandedRecipe}
+            listClick={this.handleListClick}
+          />
+          <AddNewRecipe />
         </Segment>
       </Container>
     );
