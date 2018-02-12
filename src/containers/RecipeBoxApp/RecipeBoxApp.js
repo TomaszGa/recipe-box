@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Panel } from "react-bootstrap";
 import AddNewRecipe from "../../components/AddNewRecipe/AddNewRecipe";
+import EditRecipe from "../../components/EditRecipe/EditRecipe";
 import RecipeList from "../../components/RecipeList/RecipeList";
 class RecipeBoxApp extends Component {
   state = {
@@ -21,7 +22,9 @@ class RecipeBoxApp extends Component {
     expandedRecipe: 1,
     addNewWindowOn: false,
     editorOn: false,
-    editedRecipe: null
+    editedRecipe: null,
+    editedName: null,
+    editedText: null
   };
 
   handleListClick = id => {
@@ -59,12 +62,33 @@ class RecipeBoxApp extends Component {
     }));
   };
 
+  handleEditorModalToggleOff = () => {
+    this.setState(prevState => ({
+      editorOn: !prevState.editorOn
+    }));
+  };
+
   handleEditorModalToggle = id => {
     console.log(id);
     this.setState({
       editorOn: true,
-      editedRecipe: id
+      editedRecipe: id,
+      editedName: this.state.recipes[id].name,
+      editedText: this.state.recipes[id].text
     });
+  };
+
+  handleEditSubmit = event => {
+    event.preventDefault();
+    const newRecipes = [...this.state.recipes];
+    const modifiedRecipe = newRecipes[this.state.editedRecipe];
+    modifiedRecipe.name = this.state.editedName;
+    modifiedRecipe.text = this.state.editedText;
+    this.handleEditorModalToggleOff();
+  };
+
+  handleEditorChange = (e, prop) => {
+    this.setState({ [prop]: e.target.value });
   };
 
   render() {
@@ -82,6 +106,14 @@ class RecipeBoxApp extends Component {
           formSubmit={this.handleNewSubmit}
           modalShow={this.state.addNewWindowOn}
           modalToggle={this.handleNewModalToggle}
+        />
+        <EditRecipe
+          modalShow={this.state.editorOn}
+          modalToggle={this.handleEditorModalToggleOff}
+          title={this.state.editedName}
+          content={this.state.editedText}
+          submitEdit={this.handleEditSubmit}
+          editorChange={this.handleEditorChange}
         />
       </div>
     );
