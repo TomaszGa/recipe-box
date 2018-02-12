@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Container, Segment } from "semantic-ui-react";
+
 import AddNewRecipe from "../../components/AddNewRecipe/AddNewRecipe";
 import RecipeList from "../../components/RecipeList/RecipeList";
 class RecipeBoxApp extends Component {
@@ -13,6 +15,11 @@ class RecipeBoxApp extends Component {
         id: 1,
         name: "Dummy recipe 2",
         text: "Hey I am recipe two"
+      },
+      {
+        id: 2,
+        name: "Dummy recipe 3",
+        text: "Hey I am recipe three"
       }
     ],
     expandedRecipe: null,
@@ -20,10 +27,12 @@ class RecipeBoxApp extends Component {
   };
   render() {
     return (
-      <div>
-        <h1>Recipe box app</h1>
-        <RecipeList recipes={this.state.recipes} />
-      </div>
+      <Container>
+        <Segment raised>
+          <h1>Recipe box app</h1>
+          <RecipeList recipes={this.state.recipes} />
+        </Segment>
+      </Container>
     );
   }
 }
