@@ -8,7 +8,7 @@ class RecipeBoxApp extends Component {
     recipes: [
       {
         name: "Dummy recipe 1",
-        text: "Hey I am recipe numero uno"
+        text: "Hey I am recipe numero, uno, testytest hey it's a test"
       },
       {
         name: "Dummy recipe 2",
