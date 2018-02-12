@@ -4,7 +4,7 @@ import { Accordion, Icon } from "semantic-ui-react";
 function recipeList(props) {
   const recipeList = props.recipes.map((recipe, index) => {
     return (
-      <div>
+      <div key={index}>
         <Accordion.Title
           active={props.activeIndex === index}
           onClick={() => props.listClick(index)}

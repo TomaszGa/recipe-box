@@ -30,6 +30,16 @@ class RecipeBoxApp extends Component {
     });
   };
 
+  handleNewSubmit = (event, data) => {
+    console.log(data);
+    const newRecipes = [...this.state.recipes];
+    console.log(newRecipes);
+    newRecipes.push(data);
+    console.log(newRecipes);
+    this.setState({
+      recipes: newRecipes
+    });
+  };
   render() {
     return (
       <Container>
@@ -40,7 +50,7 @@ class RecipeBoxApp extends Component {
             activeIndex={this.state.expandedRecipe}
             listClick={this.handleListClick}
           />
-          <AddNewRecipe />
+          <AddNewRecipe formSubmit={this.handleNewSubmit} />
         </Segment>
       </Container>
     );
