@@ -16,6 +16,7 @@ function recipeList(props) {
         <Panel.Body collapsible active={props.activeIndex === index}>
           <p>{recipe.text}</p>
           <Button onClick={() => props.listDeleteClick(index)}>Delete</Button>
+          <Button onClick={() => props.listEditClick(index)}>Edit</Button>
         </Panel.Body>
       </Panel>
     );

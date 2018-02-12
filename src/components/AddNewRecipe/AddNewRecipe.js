@@ -22,18 +22,18 @@ class AddNewRecipe extends Component {
         <Modal show={this.props.modalShow} onHide={this.props.modalToggle}>
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-sm">
-              Modal heading
+              Add new recipe
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h1>Form goes here</h1>
             <form
-              onSubmit={e =>
+              onSubmit={e => {
                 this.props.formSubmit(e, {
                   name: this.state.title,
                   text: this.state.content
-                })
-              }
+                });
+                this.setState({ title: "", content: "" });
+              }}
             >
               <FormGroup>
                 <ControlLabel>Title</ControlLabel>
@@ -46,10 +46,10 @@ class AddNewRecipe extends Component {
                 <FormControl.Feedback />
               </FormGroup>
               <FormGroup controlId="formControlsTextarea">
-                <ControlLabel>Textarea</ControlLabel>
+                <ControlLabel>Content</ControlLabel>
                 <FormControl
                   componentClass="textarea"
-                  placeholder="textarea"
+                  placeholder="content"
                   value={this.state.content}
                   onChange={e => this.handleChange(e, "content")}
                 />

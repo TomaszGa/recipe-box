@@ -20,7 +20,8 @@ class RecipeBoxApp extends Component {
     ],
     expandedRecipe: 1,
     addNewWindowOn: false,
-    editorOn: false
+    editorOn: false,
+    editedRecipe: null
   };
 
   handleListClick = id => {
@@ -58,6 +59,14 @@ class RecipeBoxApp extends Component {
     }));
   };
 
+  handleEditorModalToggle = id => {
+    console.log(id);
+    this.setState({
+      editorOn: true,
+      editedRecipe: id
+    });
+  };
+
   render() {
     return (
       <div className="container">
@@ -67,6 +76,7 @@ class RecipeBoxApp extends Component {
           activeIndex={this.state.expandedRecipe}
           listClick={this.handleListClick}
           listDeleteClick={this.handleListDelete}
+          listEditClick={this.handleEditorModalToggle}
         />
         <AddNewRecipe
           formSubmit={this.handleNewSubmit}
