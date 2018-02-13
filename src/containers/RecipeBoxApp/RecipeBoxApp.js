@@ -27,6 +27,24 @@ class RecipeBoxApp extends Component {
     editedText: null
   };
 
+  componentDidMount() {
+    let storedRecipes = null;
+    if (localStorage.getItem("recipes")) {
+      storedRecipes = JSON.parse(localStorage.getItem("recipes"));
+    }
+    console.log(storedRecipes);
+    if (storedRecipes) {
+      this.setState({
+        recipes: storedRecipes
+      });
+    }
+  }
+
+  updateLocalStorage = () => {
+    console.log("updating local storage");
+    localStorage.setItem("recipes", JSON.stringify(this.state.recipes));
+  };
+
   handleListClick = id => {
     let newExpandedId = id;
     if (newExpandedId === this.state.expandedRecipe) {
@@ -38,12 +56,14 @@ class RecipeBoxApp extends Component {
   };
 
   handleListDelete = id => {
-    console.log(id);
     const newRecipes = [...this.state.recipes];
     newRecipes.splice(id, 1);
-    this.setState({
-      recipes: newRecipes
-    });
+    this.setState(
+      {
+        recipes: newRecipes
+      },
+      this.updateLocalStorage
+    );
   };
 
   handleNewSubmit = (event, data) => {
@@ -51,9 +71,12 @@ class RecipeBoxApp extends Component {
     this.handleNewModalToggle();
     const newRecipes = [...this.state.recipes];
     newRecipes.push(data);
-    this.setState({
-      recipes: newRecipes
-    });
+    this.setState(
+      {
+        recipes: newRecipes
+      },
+      this.updateLocalStorage
+    );
   };
 
   handleNewModalToggle = () => {
@@ -69,7 +92,6 @@ class RecipeBoxApp extends Component {
   };
 
   handleEditorModalToggle = id => {
-    console.log(id);
     this.setState({
       editorOn: true,
       editedRecipe: id,
@@ -81,9 +103,16 @@ class RecipeBoxApp extends Component {
   handleEditSubmit = event => {
     event.preventDefault();
     const newRecipes = [...this.state.recipes];
-    const modifiedRecipe = newRecipes[this.state.editedRecipe];
+    const modifiedRecipe = { ...this.state.recipes[this.state.editedRecipe] };
     modifiedRecipe.name = this.state.editedName;
     modifiedRecipe.text = this.state.editedText;
+    newRecipes[this.state.editedRecipe] = modifiedRecipe;
+    this.setState(
+      {
+        recipes: newRecipes
+      },
+      this.updateLocalStorage
+    );
     this.handleEditorModalToggleOff();
   };
 
