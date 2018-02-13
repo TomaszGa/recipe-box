@@ -7,16 +7,16 @@ class RecipeBoxApp extends Component {
   state = {
     recipes: [
       {
-        name: "Dummy recipe 1",
-        text: "Hey I am recipe numero, uno, testytest hey it's a test"
+        name: "React.js knowledge",
+        text: "Skill, Time, Perservance"
       },
       {
-        name: "Dummy recipe 2",
-        text: "Hey I am recipe two"
+        name: "Web dev job",
+        text: "More skill, More time, Social skills"
       },
       {
-        name: "Dummy recipe 3",
-        text: "Hey I am recipe three"
+        name: "Cool single page apps",
+        text: "Ideas, React skills, Time"
       }
     ],
     expandedRecipe: 1,
