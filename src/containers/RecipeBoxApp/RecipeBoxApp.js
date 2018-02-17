@@ -17,6 +17,10 @@ class RecipeBoxApp extends Component {
       {
         name: "Cool single page apps",
         text: "Ideas, React skills, Time"
+      },
+      {
+        name: "Energy to learn more",
+        text: "Sleep, Breaks, Relaxation"
       }
     ],
     expandedRecipe: 1,
