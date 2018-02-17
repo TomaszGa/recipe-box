@@ -30,7 +30,10 @@ describe("<RecipeList />", () => {
     />
   );
   it("should render four <Panel /> elements when passed the default array", () => {
-    console.log("wrapper:", wrapper);
     expect(wrapper.find(Panel)).toHaveLength(4);
+  });
+  it("should render no <Panel /> elements when passed an empty array", () => {
+    wrapper.setProps({ recipes: [] });
+    expect(wrapper.find(Panel)).toHaveLength(0);
   });
 });
