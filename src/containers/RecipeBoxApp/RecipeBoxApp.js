@@ -5,24 +5,7 @@ import EditRecipe from "../../components/EditRecipe/EditRecipe";
 import RecipeList from "../../components/RecipeList/RecipeList";
 class RecipeBoxApp extends Component {
   state = {
-    recipes: [
-      {
-        name: "React.js knowledge",
-        text: "Skill, Time, Perservance"
-      },
-      {
-        name: "Web dev job",
-        text: "More skill, More time, Social skills"
-      },
-      {
-        name: "Cool single page apps",
-        text: "Ideas, React skills, Time"
-      },
-      {
-        name: "Energy to learn more",
-        text: "Sleep, Breaks, Relaxation"
-      }
-    ],
+    recipes: [],
     expandedRecipe: 1,
     addNewWindowOn: false,
     editorOn: false,
@@ -35,8 +18,26 @@ class RecipeBoxApp extends Component {
     let storedRecipes = null;
     if (localStorage.getItem("recipes")) {
       storedRecipes = JSON.parse(localStorage.getItem("recipes"));
+    } else {
+      storedRecipes = [
+        {
+          name: "React.js knowledge",
+          text: "Skill, Time, Perservance"
+        },
+        {
+          name: "Web dev job",
+          text: "More skill, More time, Social skills"
+        },
+        {
+          name: "Cool single page apps",
+          text: "Ideas, React skills, Time"
+        },
+        {
+          name: "Energy to learn more",
+          text: "Sleep, Breaks, Relaxation"
+        }
+      ];
     }
-    console.log(storedRecipes);
     if (storedRecipes) {
       this.setState({
         recipes: storedRecipes
@@ -54,6 +55,7 @@ class RecipeBoxApp extends Component {
     if (newExpandedId === this.state.expandedRecipe) {
       newExpandedId = null;
     }
+    console.log(newExpandedId);
     this.setState({
       expandedRecipe: newExpandedId
     });
@@ -62,9 +64,11 @@ class RecipeBoxApp extends Component {
   handleListDelete = id => {
     const newRecipes = [...this.state.recipes];
     newRecipes.splice(id, 1);
+
     this.setState(
       {
-        recipes: newRecipes
+        recipes: newRecipes,
+        expandedRecipe: null
       },
       this.updateLocalStorage
     );
