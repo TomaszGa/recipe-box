@@ -6,7 +6,7 @@ import RecipeList from "../../components/RecipeList/RecipeList";
 class RecipeBoxApp extends Component {
   state = {
     recipes: [],
-    expandedRecipe: 1,
+    expandedRecipe: null,
     addNewWindowOn: false,
     editorOn: false,
     editedRecipe: null,

@@ -14,8 +14,8 @@ function recipeList(props) {
   const recipeList = props.recipes.map((recipe, index) => {
     return (
       <CSSTransition
-        classNames="fade"
-        timeout={500}
+        classNames="slide"
+        timeout={400}
         appear={false}
         key={recipe.text}
       >
@@ -40,7 +40,9 @@ function recipeList(props) {
   return (
     <div>
       <PanelGroup accordion id="accordion-main" activeKey={props.activeIndex}>
-        <TransitionGroup>{recipeList}</TransitionGroup>
+        <TransitionGroup className="list-container">
+          {recipeList}
+        </TransitionGroup>
       </PanelGroup>
     </div>
   );

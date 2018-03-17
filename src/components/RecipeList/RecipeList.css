@@ -1,17 +1,27 @@
-.fade-enter {
-  opacity: 0.01;
+.slide-enter {
+  opacity: 0.1;
+  transform: translateX(-100%);
 }
 
-.fade-enter.fade-enter-active {
+.slide-enter.slide-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transform: translateX(0);
+  transition: 400ms ease-in-out;
 }
 
-.fade-exit {
+.slide-exit {
   opacity: 1;
+  height: 44.4px;
 }
 
-.fade-exit.fade-exit-active {
+.slide-exit.slide-exit-active {
+  box-sizing: border-box;
   opacity: 0.01;
-  transition: opacity 500ms ease-in;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transition: all 400ms ease-in-out;
+}
+.list-container {
+  overflow: hidden;
 }
